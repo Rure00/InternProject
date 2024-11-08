@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.LoginFragment"
+    android:background="@color/white"
+
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/logo_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginEnd="25dp"
+
+        android:src="@drawable/toss_logo"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/logo_iv"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:text="@string/login_str"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        android:layout_marginStart="5dp"
+        />
+
+    <EditText
+        android:id="@+id/id_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/title_tv"
+        app:layout_constraintStart_toStartOf="@id/title_tv"
+
+        android:layout_marginTop="15dp"
+
+        android:importantForAutofill="no"
+        android:hint="@string/enter_id_str"
+        android:textSize="18sp"
+
+        android:inputType="text"
+
+        android:background="@drawable/edittext_round_rectangle"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:id="@+id/pwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/id_et"
+        app:layout_constraintStart_toStartOf="@id/title_tv"
+
+        android:layout_marginTop="10dp"
+
+        android:importantForAutofill="no"
+        android:hint="@string/pwd_guide_str"
+        android:textSize="18sp"
+
+        android:inputType="text"
+
+        android:background="@drawable/edittext_round_rectangle"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/pwd_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="15dp"
+
+        android:text="@string/login_str"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+
+        android:padding="10dp"
+        android:background="@drawable/rounded_blue_rectangle"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="10dp"
+
+        android:text="@string/sign_up_str"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/button_gray"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
