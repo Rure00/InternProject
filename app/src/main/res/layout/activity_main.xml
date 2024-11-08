@@ -9,8 +9,11 @@
     android:background="@color/white">
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:name="com.example.internproject.presentation.LoginFragment"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

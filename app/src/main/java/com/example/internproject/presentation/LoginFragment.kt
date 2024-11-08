@@ -6,21 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.internproject.R
+import com.example.internproject.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentLoginBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(binding) {
+            loginBtn.setOnClickListener {
+
+            }
+            signUpBtn.setOnClickListener {
+
+            }
+        }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
