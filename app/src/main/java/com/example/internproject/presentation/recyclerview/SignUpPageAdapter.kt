@@ -31,6 +31,8 @@ class SignUpPageAdapter(): ListAdapter<SignUpPage, SignUpPageAdapter.SignUpPageV
                 contentEt.setOnClickListener { onClick(contentEt) }
             }
         }
+
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SignUpPageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sign_up_field, parent, false)
