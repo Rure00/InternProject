@@ -11,7 +11,7 @@ import com.example.internproject.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater)
@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
 
             }
             signUpBtn.setOnClickListener {
-
+                (requireActivity() as MainActivity).addFragment(SignUpFragment())
             }
         }
     }
