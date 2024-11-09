@@ -1,14 +1,19 @@
 package com.example.internproject.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.get
+import androidx.recyclerview.widget.RecyclerView
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentSignUpBinding
+import com.example.internproject.presentation.MainActivity
 import com.example.internproject.presentation.recyclerview.SignUpPage
 import com.example.internproject.presentation.recyclerview.SignUpPageAdapter
 
@@ -17,8 +22,27 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
-    private val onBirthClick = { et: View ->
+    private val signUpPageAdapter by lazy {
+        SignUpPageAdapter()
+    }
 
+    private val onBackPressedCallback = object: OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            Log.d("SignUpFragment", "back clicked!")
+
+            if(page == 0) {
+                (requireActivity() as MainActivity).removeFragment(this@SignUpFragment)
+            } else {
+                if(fieldContentList.size == page+1) {
+                    fieldContentList.removeLast()
+                }
+                binding.signUpVp.currentItem = --page
+            }
+        }
+    }
+
+    private val onBirthClick: (View) -> Unit = { et: View ->
+        Log.d("SignUpFragment", "birth clicked! ${(et as EditText).hint.toString()}")
     }
     private val signUpFieldList by lazy {
         listOf(
@@ -29,6 +53,8 @@ class SignUpFragment : Fragment() {
             SignUpPage(getString(R.string.birth_guide_str), getString(R.string.birth_str), onBirthClick),
         )
     }
+    private val fieldContentList = mutableListOf<String>()
+    private var page = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSignUpBinding.inflate(layoutInflater)
@@ -38,11 +64,32 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val signUpPageAdapter = SignUpPageAdapter()
+
         with(binding.signUpVp) {
             adapter = signUpPageAdapter
             signUpPageAdapter.submitList(signUpFieldList)
         }
+
+        binding.nextBtn.setOnClickListener { onNext() }
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
+    }
+
+    private fun onNext() {
+        val viewHolder = (binding.signUpVp[0] as RecyclerView).findViewHolderForAdapterPosition(page)
+                            as? SignUpPageAdapter.SignUpPageViewHolder
+        val content = viewHolder?.binding!!.contentEt.text.toString()
+        Log.d("SignUpFragment", "list size: ${signUpPageAdapter.currentList.size}")
+        Log.d("SignUpFragment", "content: $content")
+        fieldContentList.add(content)
+
+//        val valdateResult =
+//        if() {
+//
+//        }
+        binding.signUpVp.currentItem = ++page
+    }
+    private fun onBack() {
+
     }
 
     private fun changeNextButtonState(isOn: Boolean) = with(binding.nextBtn) {

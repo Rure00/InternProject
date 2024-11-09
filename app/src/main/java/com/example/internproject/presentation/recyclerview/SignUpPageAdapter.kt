@@ -1,8 +1,9 @@
 package com.example.internproject.presentation.recyclerview
 
+import android.text.InputType
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,12 +21,13 @@ class SignUpPageAdapter(): ListAdapter<SignUpPage, SignUpPageAdapter.SignUpPageV
     }
 ) {
 
-    inner class SignUpPageViewHolder(private val binding: SignUpFieldBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class SignUpPageViewHolder(val binding: SignUpFieldBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SignUpPage) = with(binding) {
             guideTv.text = item.guide
             contentEt.hint = item.content
 
             item.onContentClick?.let { onClick ->
+                contentEt.focusable = View.NOT_FOCUSABLE
                 contentEt.setOnClickListener { onClick(contentEt) }
             }
         }
