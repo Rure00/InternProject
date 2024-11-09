@@ -6,14 +6,14 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.internproject.presentation.LoginFragment"
+        android:name="com.example.internproject.presentation.fragment.LoginFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_login">
     </fragment>
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.internproject.presentation.SignUpFragment"
+        android:name="com.example.internproject.presentation.fragment.SignUpFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_sign_up">
     </fragment>
