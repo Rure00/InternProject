@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.internproject.R
 import com.example.internproject.databinding.FragmentLoginBinding
 import com.example.internproject.presentation.MainActivity
 
@@ -26,7 +28,8 @@ class LoginFragment : Fragment() {
 
             }
             signUpBtn.setOnClickListener {
-                (requireActivity() as MainActivity).addFragment(SignUpFragment())
+                //(requireActivity() as MainActivity).addFragment(SignUpFragment())
+                findNavController().navigate(R.id.to_signUpFragment)
             }
         }
     }

@@ -37,6 +37,7 @@
 
         android:text="@string/birth_guide_str"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="28sp"
 
         android:maxLines="2"
@@ -61,6 +62,7 @@
         android:importantForAutofill="no"
 
         android:background="@null"
+        android:focusable="false"
         />
 
     <TextView
@@ -96,6 +98,8 @@
         android:background="@drawable/toss_blue_button_selector"
         android:padding="16dp"
         android:gravity="center"
+
+        android:enabled="false"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

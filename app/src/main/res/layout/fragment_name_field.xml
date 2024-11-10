@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.signup.NameFieldFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <ImageView
         android:id="@+id/back_btn"
@@ -35,6 +36,7 @@
         android:layout_marginHorizontal="15dp"
 
         android:text="@string/name_guide_str"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="28sp"
 
@@ -52,11 +54,11 @@
 
         android:layout_marginTop="40dp"
 
-
         android:hint="@string/name_str"
         android:textSize="22sp"
+        android:privateImeOptions="defaultInputmode=korean"
 
-        android:inputType="none"
+        android:inputType="text"
         android:maxLength="15"
         android:importantForAutofill="no"
 
@@ -70,6 +72,7 @@
 
         app:layout_constraintTop_toBottomOf="@id/name_et"
 
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="15dp"
 
         android:text="아이디를 확인해주세요."
@@ -94,8 +97,11 @@
         android:textColor="@color/white"
 
         android:background="@drawable/toss_blue_button_selector"
+
         android:padding="16dp"
         android:gravity="center"
+
+        android:enabled="false"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

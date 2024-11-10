@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentSignUpBinding
 import com.example.internproject.presentation.MainActivity
-import com.example.internproject.presentation.recyclerview.SignUpPage
-import com.example.internproject.presentation.recyclerview.SignUpPageAdapter
 import com.example.internproject.presentation.utils.ValidateSignUp
 
 

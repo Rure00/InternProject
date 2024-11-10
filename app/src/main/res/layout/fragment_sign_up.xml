@@ -5,13 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.SignUpFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:clickable="true"
+    >
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/sign_up_fcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
+        android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
         app:navGraph="@navigation/signup_nav_resource"
         />

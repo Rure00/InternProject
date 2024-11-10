@@ -1,5 +1,6 @@
 package com.example.internproject.presentation.utils
 
+import androidx.core.text.isDigitsOnly
 import com.example.internproject.presentation.fragment.SignUpField
 
 class ValidateSignUp {
@@ -35,8 +36,10 @@ class ValidateSignUp {
             ValidateResult.ID_TOO_SHORT
         } else if(id.length > 12) {
             ValidateResult.ID_TOO_LONG
-        } else if(!Regex("^[A-Za-z0-9]+\$\n").matches(id)) {
+        } else if(!Regex("^[a-zA-Z0-9]+\$").matches(id)) {
             ValidateResult.ID_ONLY_ENGLISH_NUMBER
+        } else if(id.isDigitsOnly()) {
+            ValidateResult.ID_USE_ENGLISH
         } else {
             ValidateResult.APPROVED
         }
@@ -47,9 +50,9 @@ class ValidateSignUp {
         } else if(pwd.length > 12) {
             ValidateResult.PWD_TOO_LONG
         } else if(
-            !Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]*$").matches(pwd) ||
-            !Regex("^(?=.*[A-Za-z])(?=.*[^A-Za-z\\d])[A-Za-z\\d[^A-Za-z\\d]]*$").matches(pwd) ||
-            !Regex("^(?=.*\\d)(?=.*[^A-Za-z\\d])[A-Za-z\\d[^A-Za-z\\d]]*$").matches(pwd)
+            !Regex("^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]*\$").matches(pwd) &&
+            !Regex("^(?=.*[A-Za-z])(?=.*[^A-Za-z\\\\d])[A-Za-z\\\\d[^A-Za-z\\\\d]]*\$").matches(pwd) &&
+            !Regex("^(?=.*\\\\d)(?=.*[^A-Za-z\\\\d])[A-Za-z\\\\d[^A-Za-z\\\\d]]*\$").matches(pwd)
         ) {
             ValidateResult.PWD_CONTAIN_TWO_OPTION
         } else {
@@ -67,6 +70,7 @@ class ValidateSignUp {
         ID_TOO_SHORT("6글자 이상 입력해주세요."),
         ID_TOO_LONG("12글자 이하로 입력해주세요."),
         ID_ONLY_ENGLISH_NUMBER("영어와 숫자만 입력 가능합니다."),
+        ID_USE_ENGLISH("숫자만 이용할 수 없습니다."),
 
         PWD_TOO_SHORT("6글자 이상 입력해주세요."),
         PWD_TOO_LONG("12글자 이하로 입력해주세요."),

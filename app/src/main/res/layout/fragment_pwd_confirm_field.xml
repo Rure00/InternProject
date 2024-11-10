@@ -37,6 +37,7 @@
 
         android:text="@string/enter_pwd_check_str"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="28sp"
 
         android:maxLines="2"
@@ -96,6 +97,8 @@
         android:background="@drawable/toss_blue_button_selector"
         android:padding="16dp"
         android:gravity="center"
+
+        android:enabled="false"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
