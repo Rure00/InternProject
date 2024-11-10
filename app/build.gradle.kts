@@ -3,13 +3,14 @@ plugins {
     alias(libs.plugins.kotlin.android)
 
     //hilt 추가 내용
-
     //alias(libs.plugins.dagger.hilt.android)
 
     kotlin("plugin.serialization") version "1.5.0"
 
     id("kotlin-parcelize")
     id("kotlin-kapt")
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -57,6 +58,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,4 +82,10 @@ dependencies {
     //glide
     implementation("com.github.bumptech.glide:glide:4.13.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+
+    //gson
+    implementation("com.google.code.gson:gson:2.11.0")
 }
