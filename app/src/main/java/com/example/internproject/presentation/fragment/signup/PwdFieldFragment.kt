@@ -2,12 +2,14 @@ package com.example.internproject.presentation.fragment.signup
 
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
@@ -46,6 +48,16 @@ class PwdFieldFragment : Fragment() {
 
             nextBtn.setOnClickListener {
                 findNavController().navigate(R.id.to_pwdConfirmFragment)
+            }
+            showPwdBtn.setOnClickListener {
+                it.isSelected = !it.isSelected
+                pwdEt.inputType =  if(it.isSelected) {
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                }
+
+                pwdEt.setSelection(pwdEt.text.length)
             }
         }
     }

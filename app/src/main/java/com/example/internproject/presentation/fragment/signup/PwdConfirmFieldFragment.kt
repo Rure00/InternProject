@@ -2,6 +2,7 @@ package com.example.internproject.presentation.fragment.signup
 
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,6 +41,16 @@ class PwdConfirmFieldFragment : Fragment() {
 
             nextBtn.setOnClickListener {
                 findNavController().navigate(R.id.to_birthFragment)
+            }
+            showPwdBtn.setOnClickListener {
+                it.isSelected = !it.isSelected
+                pwdEt.inputType =  if(it.isSelected) {
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                }
+
+                pwdEt.setSelection(pwdEt.text.length)
             }
         }
     }
