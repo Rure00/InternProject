@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_resource"
+    app:startDestination="@id/login_fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.internproject.presentation.fragment.LoginFragment"
+        android:label="loginFragment"
+        tools:layout="@layout/fragment_login"
+        >
+        <action
+            android:id="@+id/to_signUpFragment"
+            app:destination="@id/sign_up_fragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/sign_up_fragment"
+        android:name="com.example.internproject.presentation.fragment.SignUpFragment"
+        android:label="signUpFragment"
+        tools:layout="@layout/fragment_sign_up"
+        >
+
+
+    </fragment>
+
+</navigation>
