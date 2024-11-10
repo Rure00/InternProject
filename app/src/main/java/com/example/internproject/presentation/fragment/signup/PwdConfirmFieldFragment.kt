@@ -60,7 +60,14 @@ class PwdConfirmFieldFragment : Fragment() {
     }
 
     private fun doCheckPwdConfirm(pwd: String) = with(binding) {
-        nextBtn.isEnabled = (signUpViewModel.pwd == pwd)
+        val isOkay = (signUpViewModel.pwd == pwd)
+
+        nextBtn.isEnabled = isOkay
+        wrongInputGuideTv.visibility =  if(isOkay) {
+            View.INVISIBLE
+        } else {
+            View.VISIBLE
+        }
     }
 
     override fun onDestroy() {

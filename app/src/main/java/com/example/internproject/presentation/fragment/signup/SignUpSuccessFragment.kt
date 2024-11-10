@@ -1,6 +1,7 @@
 package com.example.internproject.presentation.fragment.signup
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,14 +46,20 @@ class SignUpSuccessFragment : Fragment() {
             signUpViewModel.signUpUiState.collectLatest { state ->
                 when(state) {
                     is SignUpUiState.Success -> {
+                        Log.d("SignUpTry", "SignUpSuccess")
                         binding.backToLoginBtn.isEnabled = true
                     } SignUpUiState.Failure -> {
+                    Log.d("SignUpTry", "Fail")
                         Toast.makeText(requireContext(), "회원가입에 실패하였습니다. 나중에 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
                         signUpViewModel.closeFragmentFlag.value = true
-                    } else -> { }
+                    } else -> {
+                    Log.d("SignUpTry", "Else?")
+                    }
                 }
             }
         }
+
+        signUpViewModel.trySignUp()
     }
 
     override fun onDestroy() {
