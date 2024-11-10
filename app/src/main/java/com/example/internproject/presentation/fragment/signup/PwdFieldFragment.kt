@@ -62,6 +62,9 @@ class PwdFieldFragment : Fragment() {
 
                 pwdEt.setSelection(pwdEt.text.length)
             }
+            backBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

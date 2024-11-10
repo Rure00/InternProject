@@ -63,6 +63,7 @@ class SignUpFragment : Fragment() {
         signUpViewModel.closeFragmentFlag.observe(viewLifecycleOwner) {
             if(it) {
                 findNavController().popBackStack()
+                signUpViewModel.closeFragmentFlag.value = false
             }
         }
     }

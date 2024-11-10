@@ -73,7 +73,7 @@
         android:hint="@string/pwd_guide_str"
         android:textSize="18sp"
 
-        android:inputType="text"
+        android:inputType="textPassword"
 
         android:background="@drawable/edittext_round_rectangle"
         android:padding="10dp"
