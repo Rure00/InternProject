@@ -1,6 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    //hilt 추가 내용
+    //alias(libs.plugins.dagger.hilt.android)
+
+    kotlin("plugin.serialization") version "1.5.0"
+
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,6 +60,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
+    
     //navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.1")
