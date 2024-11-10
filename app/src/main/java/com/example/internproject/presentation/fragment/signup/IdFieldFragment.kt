@@ -54,9 +54,11 @@ class IdFieldFragment : Fragment() {
             imm.showSoftInput(idEt, InputMethodManager.SHOW_IMPLICIT)
 
             nextBtn.setOnClickListener {
-                findNavController().navigate(R.id.to_pwdFragment)
+                signUpViewModel.checkIdDuplicated(idEt.text.toString())
             }
         }
+
+        signUpViewModel.initCheckDuplicateState()
     }
 
     override fun onStart() {

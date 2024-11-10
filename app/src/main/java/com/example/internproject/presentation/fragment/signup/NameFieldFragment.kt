@@ -59,11 +59,11 @@ class NameFieldFragment : Fragment() {
             }
 
             nextBtn.setOnClickListener {
-                signUpViewModel.checkIdDuplicated(nameEt.text.toString())
+                signUpViewModel.checkNameDuplicated(nameEt.text.toString())
             }
-
-
         }
+
+        signUpViewModel.initCheckDuplicateState()
     }
 
     override fun onStart() {
