@@ -56,6 +56,9 @@ class BirthFieldFragment : Fragment() {
                 signUpViewModel.birth = birthEt.text.toString()
                 findNavController().navigate(R.id.to_successFragment)
             }
+            backBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

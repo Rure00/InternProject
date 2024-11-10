@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentSignUpBinding
@@ -40,6 +42,12 @@ class SignUpSuccessFragment : Fragment() {
             backToLoginBtn.setOnClickListener {
                 signUpViewModel.closeFragmentFlag.value = true
             }
+            signUpViewModel.closeFragmentFlag.value = true
+            requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    signUpViewModel.closeFragmentFlag.value = true
+                }
+            })
         }
 
         lifecycleScope.launch {

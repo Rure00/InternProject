@@ -61,6 +61,9 @@ class NameFieldFragment : Fragment() {
             nextBtn.setOnClickListener {
                 signUpViewModel.checkNameDuplicated(nameEt.text.toString())
             }
+            backBtn.setOnClickListener {
+                signUpViewModel.closeFragmentFlag.value = true
+            }
         }
 
         signUpViewModel.initCheckDuplicateState()

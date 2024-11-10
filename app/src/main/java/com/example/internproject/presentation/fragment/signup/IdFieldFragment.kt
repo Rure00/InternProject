@@ -56,6 +56,9 @@ class IdFieldFragment : Fragment() {
             nextBtn.setOnClickListener {
                 signUpViewModel.checkIdDuplicated(idEt.text.toString())
             }
+            backBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         signUpViewModel.initCheckDuplicateState()
