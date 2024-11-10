@@ -1,7 +1,6 @@
 package com.example.internproject.presentation.utils
 
 import androidx.core.text.isDigitsOnly
-import com.example.internproject.presentation.fragment.SignUpField
 
 class ValidateSignUp {
 

@@ -9,18 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentNameFieldBinding
-import com.example.internproject.presentation.MainActivity
-import com.example.internproject.presentation.fragment.SignUpField
+import com.example.internproject.presentation.ui_state.ResultUiState
+import com.example.internproject.presentation.utils.SignUpField
 import com.example.internproject.presentation.utils.ValidateSignUp
+import com.example.internproject.presentation.viewmodels.SignUpViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -31,12 +32,13 @@ class NameFieldFragment : Fragment() {
     private lateinit var nameValidateResult: ValidateSignUp.ValidateResult
     private val validate = ValidateSignUp()
 
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
+    private lateinit var checkDuplicateJob: Job
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentNameFieldBinding.inflate(inflater)
         return binding.root
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,9 +59,45 @@ class NameFieldFragment : Fragment() {
             }
 
             nextBtn.setOnClickListener {
-                findNavController().navigate(R.id.to_idFragment)
+                signUpViewModel.checkIdDuplicated(nameEt.text.toString())
+            }
+
+
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        checkDuplicateJob = lifecycleScope.launch {
+            val onFail =  { msg: String ->
+                binding.wrongInputGuideTv.text = msg
+                binding.wrongInputGuideTv.visibility = View.VISIBLE
+                changeNextButtonState(false)
+            }
+
+            signUpViewModel.duplicatingUiState.collectLatest { state ->
+                when(state) {
+                    is ResultUiState.Success -> {
+                        if(state.isSuccess) {
+                            signUpViewModel.name = binding.nameEt.text.toString()
+                            findNavController().navigate(R.id.to_idFragment)
+                        } else {
+                            onFail("이미 가입된 계정이 있습니다.")
+                        }
+                    }
+                    is ResultUiState.Failure -> {
+                        onFail("알 수 없는 이유로 실패하였습니다.")
+                    }
+                    else -> { }
+                }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        checkDuplicateJob.cancel()
     }
 
     private fun doCheckName(name: String) = with(binding) {
@@ -88,4 +126,5 @@ class NameFieldFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }

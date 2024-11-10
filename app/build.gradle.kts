@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
 
     //hilt 추가 내용
+
     //alias(libs.plugins.dagger.hilt.android)
 
     kotlin("plugin.serialization") version "1.5.0"
@@ -68,4 +69,11 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.1")
 
+    //coroutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android")
+
+    //viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 }
