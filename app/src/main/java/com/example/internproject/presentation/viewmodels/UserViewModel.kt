@@ -37,7 +37,7 @@ class UserViewModel @Inject constructor(
                     _user.value = result.user
                     _resultUiState.value = ResultUiState.Success(true)
                 } is LoginResult.Failure -> {
-                _resultUiState.value = ResultUiState.Success(false)
+                _resultUiState.value = ResultUiState.Failure
                 }
             }
         }

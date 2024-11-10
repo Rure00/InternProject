@@ -72,6 +72,7 @@ class LoginFragment : Fragment() {
 
 
     private fun onLogin(id: String, pwd: String) {
+        if(id.isEmpty() || pwd.isEmpty()) return
         userViewModel.tryLogin(id, pwd)
     }
 

@@ -42,7 +42,6 @@ class SignUpSuccessFragment : Fragment() {
             backToLoginBtn.setOnClickListener {
                 signUpViewModel.closeFragmentFlag.value = true
             }
-            signUpViewModel.closeFragmentFlag.value = true
             requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     signUpViewModel.closeFragmentFlag.value = true

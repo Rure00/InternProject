@@ -81,20 +81,6 @@ class BirthFieldFragment : Fragment() {
                     binding.nextBtn.isEnabled = true
                 }
             }
-
-//            val textColor = ContextCompat.getColor(requireContext(), R.color.black) // 원하는 색상
-//            val datePk = dataPickBottomSheet.datePk
-//            for (i in 0 until datePk.childCount) {
-//                val child = datePk.getChildAt(i)
-//                if (child is ViewGroup) {
-//                    for (j in 0 until child.childCount) {
-//                        val innerChild = child.getChildAt(j)
-//                        if (innerChild is NumberPicker) {
-//                            innerChild.setTextColor(textColor) // 텍스트 색상 설정
-//                        }
-//                    }
-//                }
-//            }
         }
     }
 
