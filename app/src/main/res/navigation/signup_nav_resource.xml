@@ -81,7 +81,7 @@
         >
 
         <action
-            android:id="@+id/to_birthFragment"
+            android:id="@+id/to_successFragment"
             app:destination="@id/successFragment"
 
             app:enterAnim="@anim/right_in"

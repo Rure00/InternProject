@@ -1,4 +1,4 @@
-package com.example.internproject.data.di
+package com.example.internproject.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

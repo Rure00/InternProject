@@ -12,12 +12,15 @@ import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
 import com.example.internproject.databinding.BirthBottomSheetBinding
 import com.example.internproject.databinding.FragmentBirthFieldBinding
 import com.example.internproject.presentation.viewmodels.SignUpViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class BirthFieldFragment : Fragment() {
@@ -38,7 +41,12 @@ class BirthFieldFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initCalendarBottomSheet()
-        dataPickBottomSheetDialog.show()
+
+        lifecycleScope.launch {
+            delay(700)
+            dataPickBottomSheetDialog.show()
+        }
+
 
         with(binding) {
             binding.birthEt.setOnClickListener {
@@ -46,7 +54,7 @@ class BirthFieldFragment : Fragment() {
             }
             nextBtn.setOnClickListener {
                 signUpViewModel.birth = birthEt.text.toString()
-                findNavController().navigate(R.id.to_pwdConfirmFragment)
+                findNavController().navigate(R.id.to_successFragment)
             }
         }
     }
@@ -66,22 +74,24 @@ class BirthFieldFragment : Fragment() {
                     val birthText = "${year}년 ${month+1}월 ${dayOfMonth}일"
                     binding.birthEt.setText(birthText)
                     dataPickBottomSheetDialog.dismiss()
+
+                    binding.nextBtn.isEnabled = true
                 }
             }
 
-            val textColor = ContextCompat.getColor(requireContext(), R.color.black) // 원하는 색상
-            val datePk = dataPickBottomSheet.datePk
-            for (i in 0 until datePk.childCount) {
-                val child = datePk.getChildAt(i)
-                if (child is ViewGroup) {
-                    for (j in 0 until child.childCount) {
-                        val innerChild = child.getChildAt(j)
-                        if (innerChild is NumberPicker) {
-                            innerChild.setTextColor(textColor) // 텍스트 색상 설정
-                        }
-                    }
-                }
-            }
+//            val textColor = ContextCompat.getColor(requireContext(), R.color.black) // 원하는 색상
+//            val datePk = dataPickBottomSheet.datePk
+//            for (i in 0 until datePk.childCount) {
+//                val child = datePk.getChildAt(i)
+//                if (child is ViewGroup) {
+//                    for (j in 0 until child.childCount) {
+//                        val innerChild = child.getChildAt(j)
+//                        if (innerChild is NumberPicker) {
+//                            innerChild.setTextColor(textColor) // 텍스트 색상 설정
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 

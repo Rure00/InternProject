@@ -88,7 +88,7 @@
 
         android:layout_marginHorizontal="15dp"
 
-        android:text="아이디를 확인해주세요."
+        android:text="@string/wrong_pwd_str"
         android:textSize="16sp"
         android:textColor="@color/alert_text_color"
 

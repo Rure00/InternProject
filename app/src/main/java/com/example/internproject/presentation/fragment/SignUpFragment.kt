@@ -20,10 +20,11 @@ import com.example.internproject.presentation.MainActivity
 import com.example.internproject.presentation.ui_state.ResultUiState
 import com.example.internproject.presentation.utils.ValidateSignUp
 import com.example.internproject.presentation.viewmodels.SignUpViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!

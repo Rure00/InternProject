@@ -1,4 +1,4 @@
-package com.example.internproject.data.di
+package com.example.internproject.di
 
 import com.example.internproject.data.repository.UserRepositoryImpl
 import com.example.internproject.domain.repository.UserRepository

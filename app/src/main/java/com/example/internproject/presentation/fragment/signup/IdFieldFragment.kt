@@ -76,7 +76,7 @@ class IdFieldFragment : Fragment() {
                     is ResultUiState.Success -> {
                         if(state.isSuccess) {
                             signUpViewModel.id = binding.idEt.text.toString()
-                            findNavController().navigate(R.id.to_idFragment)
+                            findNavController().navigate(R.id.to_pwdFragment)
                         } else {
                             onFail("중복된 ID입니다.")
                         }

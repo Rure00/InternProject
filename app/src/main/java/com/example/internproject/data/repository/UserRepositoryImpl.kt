@@ -13,9 +13,9 @@ class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ): UserRepository {
     override suspend fun login(id: String, pwd: String): LoginResult {
-        return LoginResult.Success(User(
-            id = "dicit", userName = "Imogene Jackson", birth = "doctus", loginId = "viris", pwd = "melius"
-        ))
+        return kotlin.runCatching {
+            userDataSource.tryLogin(id, pwd)
+        }.getOrElse { LoginResult.Failure }
     }
 
     override suspend fun signUp(signUpDto: SignUpDto): SignUpResult {
