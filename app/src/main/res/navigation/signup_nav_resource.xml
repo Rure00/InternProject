@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_resource"
+    app:startDestination="@id/nameFragment">
+
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.NameFieldFragment"
+        android:label="name_fragment"
+        tools:layout="@layout/fragment_name_field"
+        >
+        <action
+            android:id="@+id/to_idFragment"
+            app:destination="@id/idFragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/idFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.IdFieldFragment"
+        android:label="id_fragment"
+        tools:layout="@layout/fragment_id_field"
+        >
+        <action
+            android:id="@+id/to_pwdFragment"
+            app:destination="@id/pwdFragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pwdFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.PwdFieldFragment"
+        android:label="pwd_fragment"
+        tools:layout="@layout/fragment_pwd_field"
+        >
+        <action
+            android:id="@+id/to_pwdConfirmFragment"
+            app:destination="@id/pwdConfirmFragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pwdConfirmFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.PwdConfirmFieldFragment"
+        android:label="pwd_confirm_fragment"
+        tools:layout="@layout/fragment_pwd_confirm_field"
+        >
+        <action
+            android:id="@+id/to_birthFragment"
+            app:destination="@id/birthFragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/birthFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.BirthFieldFragment"
+        android:label="birth_fragment"
+        tools:layout="@layout/fragment_birth_field"
+        >
+
+    </fragment>
+
+
+</navigation>

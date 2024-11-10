@@ -10,4 +10,6 @@
     <color name="toss_blue_inactive">#FFC9DFFD</color>
     <color name="text_inactive">#FFE3EFFE</color>
 
+    <color name="alert_text_color">#FFD1180B</color>
+
 </resources>

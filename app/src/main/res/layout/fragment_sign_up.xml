@@ -4,52 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.SignUpFragment"
-    android:background="@color/white">
+    tools:context=".presentation.fragment.SignUpFragment"
+    android:background="@color/white"
+    android:clickable="true"
+    >
 
-    <ImageView
-        android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-
-        android:src="@drawable/back_btn"
-        android:contentDescription="@null"
-        />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/sign_up_vp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/sign_up_fcv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
 
-        app:layout_constraintTop_toBottomOf="@id/back_btn"
-        app:layout_constraintBottom_toTopOf="@id/next_btn"
-
-        android:layout_marginTop="15dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/signup_nav_resource"
         />
-
-    <TextView
-        android:id="@+id/next_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        android:text="@string/next_str"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-
-        android:background="@color/toss_blue"
-        android:padding="16dp"
-        android:gravity="center"
-        />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
