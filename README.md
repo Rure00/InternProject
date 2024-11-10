@@ -1,3 +1,9 @@
+1. UI적으로 호평을 받는 토스의 1페이지 1기능을 따라해보았습니다.
+2. Clean Arhcitecture를 구현하였습니다.
+   - layer 분리: presenter, domain, data
+   - hilt 이용
+3. FireBase의 FireStore를 이용하였습니다.
+
 
 [로그인 과정]
 <p align="center">
@@ -10,4 +16,4 @@
     <img src="https://private-user-images.githubusercontent.com/86520346/384685371-103e963b-92db-4ce9-874d-f4a953b4fb76.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzEyMzk1MjYsIm5iZiI6MTczMTIzOTIyNiwicGF0aCI6Ii84NjUyMDM0Ni8zODQ2ODUzNzEtMTAzZTk2M2ItOTJkYi00Y2U5LTg3NGQtZjRhOTUzYjRmYjc2LmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDExMTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMTEwVDExNDcwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWYxYWQ4ZWIwNGMwZGU2MjdjN2YzZmZiYjE2MTJhODBhODRiNzA5YWY4MDk4YjczNGI3NmY3MDE4NWMwZDFhNWYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.fNEhJyWunPne8BrHeNpm6zPzrVDcgBIE-fW2S73lICE">
 </p>
 
-UI적으로 호평을 받는 토스의 1페이지 1기능을 따라해보았습니다.
+
