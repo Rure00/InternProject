@@ -64,9 +64,11 @@
         android:textSize="22sp"
         android:textColor="@color/white"
 
-        android:background="@drawable/rounded_blue_rectangle"
+        android:background="@drawable/round_button"
         android:gravity="center"
         android:padding="15dp"
+
+        android:enabled="false"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
