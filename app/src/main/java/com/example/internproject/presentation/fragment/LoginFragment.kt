@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
 
 
     private fun onLogin(id: String, pwd: String) {
-
+        userViewModel.tryLogin(id, pwd)
     }
 
     override fun onDestroy() {

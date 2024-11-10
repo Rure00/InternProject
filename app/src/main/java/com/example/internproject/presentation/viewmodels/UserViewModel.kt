@@ -10,6 +10,7 @@ import com.example.internproject.domain.usecase.LoginUseCase
 import com.example.internproject.presentation.ui_state.ResultUiState
 import com.example.internproject.presentation.ui_state.SignUpUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -27,6 +28,10 @@ class UserViewModel @Inject constructor(
 
     fun tryLogin(id: String, pwd: String) {
         viewModelScope.launch {
+            _resultUiState.value = ResultUiState.Loading
+
+            delay(700)
+
             when(val result = loginUseCase.invoke(id, pwd)) {
                 is LoginResult.Success -> {
                     _user.value = result.user
