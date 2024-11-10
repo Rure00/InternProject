@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentSignUpBinding
 import com.example.internproject.presentation.MainActivity
+import com.example.internproject.presentation.dialog.LoadingDialog
 import com.example.internproject.presentation.ui_state.ResultUiState
 import com.example.internproject.presentation.utils.ValidateSignUp
 import com.example.internproject.presentation.viewmodels.SignUpViewModel
@@ -46,13 +47,14 @@ class SignUpFragment : Fragment() {
         signUpViewModel.reset()
 
         lifecycleScope.launch {
+            val loadingBar = LoadingDialog(requireContext())
             signUpViewModel.duplicatingUiState.collectLatest { state ->
                 when(state) {
                     is ResultUiState.Loading -> {
-                        //TODO: 로딩화면 띄우기
+                        loadingBar.show()
                     }
                     else -> {
-                        //TODO: 로딩화면 없애기
+                        loadingBar.dismiss()
                     }
                 }
             }
