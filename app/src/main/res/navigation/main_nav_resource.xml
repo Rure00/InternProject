@@ -21,7 +21,16 @@
             app:popEnterAnim="@anim/left_in"
             app:popExitAnim="@anim/right_out"
             />
+        <action
+            android:id="@+id/to_mainFragment"
+            app:destination="@id/main_fragment"
 
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out"
+            />
     </fragment>
 
     <fragment
@@ -29,6 +38,16 @@
         android:name="com.example.internproject.presentation.fragment.SignUpFragment"
         android:label="signUpFragment"
         tools:layout="@layout/fragment_sign_up"
+        >
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.example.internproject.presentation.fragment.MainFragment"
+        android:label="mainFragment"
+        tools:layout="@layout/fragment_main"
         >
 
 
