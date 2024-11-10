@@ -80,6 +80,25 @@
         tools:layout="@layout/fragment_birth_field"
         >
 
+        <action
+            android:id="@+id/to_birthFragment"
+            app:destination="@id/successFragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.example.internproject.presentation.fragment.signup.SignUpSuccessFragment"
+        android:label="success_fragment"
+        tools:layout="@layout/fragment_sign_up_success"
+        >
+
     </fragment>
 
 

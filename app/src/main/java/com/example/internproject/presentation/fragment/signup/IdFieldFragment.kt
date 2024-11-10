@@ -10,14 +10,17 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
-import com.example.internproject.databinding.FragmentBirthFieldBinding
 import com.example.internproject.databinding.FragmentIdFieldBinding
-import com.example.internproject.presentation.fragment.SignUpField
+import com.example.internproject.presentation.ui_state.ResultUiState
+import com.example.internproject.presentation.utils.SignUpField
 import com.example.internproject.presentation.utils.ValidateSignUp
-import kotlinx.coroutines.delay
+import com.example.internproject.presentation.viewmodels.SignUpViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class IdFieldFragment : Fragment() {
@@ -26,6 +29,9 @@ class IdFieldFragment : Fragment() {
 
     private lateinit var idValidateResult: ValidateSignUp.ValidateResult
     private val validate = ValidateSignUp()
+
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
+    private lateinit var checkDuplicateJob: Job
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentIdFieldBinding.inflate(inflater)
@@ -48,9 +54,45 @@ class IdFieldFragment : Fragment() {
             imm.showSoftInput(idEt, InputMethodManager.SHOW_IMPLICIT)
 
             nextBtn.setOnClickListener {
-                findNavController().navigate(R.id.to_pwdFragment)
+                signUpViewModel.checkIdDuplicated(idEt.text.toString())
             }
         }
+
+        signUpViewModel.initCheckDuplicateState()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        checkDuplicateJob = lifecycleScope.launch {
+            val onFail =  { msg: String ->
+                binding.wrongInputGuideTv.text = msg
+                binding.wrongInputGuideTv.visibility = View.VISIBLE
+                changeNextButtonState(false)
+            }
+
+            signUpViewModel.duplicatingUiState.collectLatest { state ->
+                when(state) {
+                    is ResultUiState.Success -> {
+                        if(state.isSuccess) {
+                            signUpViewModel.id = binding.idEt.text.toString()
+                            findNavController().navigate(R.id.to_idFragment)
+                        } else {
+                            onFail("중복된 ID입니다.")
+                        }
+                    }
+                    is ResultUiState.Failure -> {
+                        onFail("알 수 없는 이유로 실패하였습니다.")
+                    }
+                    else -> { }
+                }
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        checkDuplicateJob.cancel()
     }
 
     private fun doCheckId(name: String) = with(binding) {

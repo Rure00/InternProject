@@ -9,15 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
-import com.example.internproject.databinding.FragmentPwdConfirmFieldBinding
 import com.example.internproject.databinding.FragmentPwdFieldBinding
-import com.example.internproject.presentation.fragment.SignUpField
+import com.example.internproject.presentation.utils.SignUpField
 import com.example.internproject.presentation.utils.ValidateSignUp
+import com.example.internproject.presentation.viewmodels.SignUpViewModel
 
 class PwdFieldFragment : Fragment() {
     private var _binding: FragmentPwdFieldBinding? = null
@@ -25,6 +25,8 @@ class PwdFieldFragment : Fragment() {
 
     private lateinit var pwdValidateResult: ValidateSignUp.ValidateResult
     private val validate = ValidateSignUp()
+
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPwdFieldBinding.inflate(inflater)
@@ -47,6 +49,7 @@ class PwdFieldFragment : Fragment() {
             imm.showSoftInput(pwdEt, InputMethodManager.SHOW_IMPLICIT)
 
             nextBtn.setOnClickListener {
+                signUpViewModel.pwd = pwdEt.text.toString()
                 findNavController().navigate(R.id.to_pwdConfirmFragment)
             }
             showPwdBtn.setOnClickListener {

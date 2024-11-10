@@ -10,6 +10,7 @@ buildscript {
     repositories {
         // Add the following line:
         google()  // Google's Maven repository
+        mavenCentral()
     }
 
     dependencies {

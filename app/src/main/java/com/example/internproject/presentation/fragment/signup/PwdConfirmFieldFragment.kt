@@ -10,14 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
 import com.example.internproject.databinding.FragmentIdFieldBinding
 import com.example.internproject.databinding.FragmentPwdConfirmFieldBinding
+import com.example.internproject.presentation.viewmodels.SignUpViewModel
 
 class PwdConfirmFieldFragment : Fragment() {
     private var _binding: FragmentPwdConfirmFieldBinding? = null
     private val binding get() = _binding!!
+
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPwdConfirmFieldBinding.inflate(inflater)
@@ -56,8 +60,7 @@ class PwdConfirmFieldFragment : Fragment() {
     }
 
     private fun doCheckPwdConfirm(pwd: String) = with(binding) {
-        //TODO: ViewModel로 확인
-        binding.nextBtn.isEnabled = true
+        nextBtn.isEnabled = (signUpViewModel.pwd == pwd)
     }
 
     override fun onDestroy() {

@@ -11,10 +11,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.internproject.R
 import com.example.internproject.databinding.BirthBottomSheetBinding
 import com.example.internproject.databinding.FragmentBirthFieldBinding
+import com.example.internproject.presentation.viewmodels.SignUpViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -24,6 +26,8 @@ class BirthFieldFragment : Fragment() {
 
     private lateinit var dataPickBottomSheet: BirthBottomSheetBinding
     private lateinit var dataPickBottomSheetDialog: BottomSheetDialog
+
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBirthFieldBinding.inflate(inflater)
@@ -41,6 +45,7 @@ class BirthFieldFragment : Fragment() {
                 dataPickBottomSheetDialog.show()
             }
             nextBtn.setOnClickListener {
+                signUpViewModel.birth = birthEt.text.toString()
                 findNavController().navigate(R.id.to_pwdConfirmFragment)
             }
         }
