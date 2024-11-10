@@ -2,13 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 
-    //hilt 추가 내용
-    //alias(libs.plugins.dagger.hilt.android)
-
-    kotlin("plugin.serialization") version "1.5.0"
-
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    //id("dagger.hilt.android.plugin") version "2.48"
+
+    //hilt 추가 내용
+    //id("com.google.dagger.hilt.android") version "2.48" apply false
+    //alias(libs.plugins.dagger.hilt.android)
+
+    
+    kotlin("plugin.serialization") version "1.5.0"
 
     id("com.google.gms.google-services")
 }
@@ -24,7 +28,18 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "dagger.hilt.android.testing.HiltTestRunner"
+
+        kapt {
+//            javacOptions {
+//                // These options are normally set automatically via the Hilt Gradle plugin, but we
+//                // set them manually to workaround a bug in the Kotlin 1.5.20
+//                option("-Adagger.fastInit=ENABLED")
+//                option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+//            }
+
+            correctErrorTypes = true
+        }
     }
 
     buildTypes {
@@ -77,7 +92,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android")
 
     //viewmodel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
 
     //glide
     implementation("com.github.bumptech.glide:glide:4.13.0")
