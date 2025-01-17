@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -103,4 +104,12 @@ dependencies {
 
     //gson
     implementation("com.google.code.gson:gson:2.11.0")
+
+    //compose
+    implementation("androidx.activity:activity-compose:1.10.0")
+    implementation("androidx.compose.material:material:1.7.6")
+    implementation("androidx.compose.animation:animation:1.7.6")
+    implementation("androidx.compose.ui:ui-tooling:1.7.6")
+
+
 }
