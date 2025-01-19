@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,12 +25,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.DialogWindowProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.internproject.R
 import com.example.internproject.presentation.ui_state.ResultUiState
+import com.example.internproject.presentation.ui_state.SignUpUiState
 import com.example.internproject.presentation.viewmodels.UserViewModel
 import com.example.internproject.ui.theme.ButtonGray
 import com.example.internproject.ui.theme.TossBlue
@@ -167,8 +174,26 @@ fun LoginScreen(
                 }
             )
         }
+    }
 
+    if(loginResultUiState.value == ResultUiState.Loading) {
+        Box(modifier = Modifier.fillMaxSize().background(color = LightGray.copy(alpha = 0.5f))) {
+            LoadingDialog()
+        }
+    }
+}
 
-
+@Composable
+private fun LoadingDialog() {
+    Dialog(
+        onDismissRequest = {  },
+        properties = DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false,
+        )
+    ) {
+        (LocalView.current.parent as DialogWindowProvider).window.setDimAmount(0f)
+        CircularProgressIndicator(
+        )
     }
 }
