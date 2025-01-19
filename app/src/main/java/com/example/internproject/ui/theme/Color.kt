@@ -16,4 +16,4 @@ val Black = Color.Black
 
 val TossBlue = Color(0xFF0064FF)
 val TossGray = Color(0XFF202632)
-val ButtonGray = Color(0xFF0064FF)
+val ButtonGray = Color(0xFF9FA8B1)
