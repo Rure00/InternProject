@@ -13,13 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -37,26 +41,36 @@ import com.example.internproject.ui.theme.White
 
 @Composable
 fun WriteNamePage(
+    value: String,
     onBackButton: () -> Unit,
     onNext: (String) -> Unit,
     signUpViewModel: SignUpViewModel = hiltViewModel<SignUpViewModel>()
 ) {
 
-    val nameState = remember { mutableStateOf("") }
+    val nameState = remember { mutableStateOf(value) }
     val activateNextButton = remember { mutableStateOf(false) }
 
     val warningMsg = remember { mutableStateOf("") }
     val checkDuplicated = signUpViewModel.duplicatingUiState.collectAsState()
-    when(checkDuplicated.value) {
+    when(val result = checkDuplicated.value) {
         is ResultUiState.Success -> {
-            onNext(nameState.value)
+            if(result.isSuccess) onNext(nameState.value)
+            else warningMsg.value = "가입된 계정이 있습니다."
         }
         is ResultUiState.Failure -> {
             activateNextButton.value = false
+            warningMsg.value = "나중에 다시 시도해주세요."
         }
         else -> {
 
         }
+    }
+
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+        keyboardController?.show()
     }
 
     fun validateName() {
@@ -107,8 +121,11 @@ fun WriteNamePage(
                     nameState.value = it
                     validateName()
                 },
+                modifier = Modifier.focusRequester(focusRequester),
                 textStyle = Typography.bodyMedium
             )
+
+            Spacer(modifier = Modifier.height(5.dp))
 
             if(warningMsg.value.isNotEmpty()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -124,7 +141,6 @@ fun WriteNamePage(
                 }
             }
         }
-
 
 
         Box(
