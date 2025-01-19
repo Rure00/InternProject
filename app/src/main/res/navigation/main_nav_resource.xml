@@ -3,7 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_resource"
-    app:startDestination="@id/login_fragment">
+    app:startDestination="@id/select_fragment">
+
+    <fragment
+        android:id="@+id/select_fragment"
+        android:name="com.example.internproject.presentation.fragment.SelectFragment"
+        android:label="selectFragment"
+        tools:layout="@layout/fragment_select"
+        >
+
+        <action
+            android:id="@+id/to_loginFragment"
+            app:destination="@id/login_fragment"
+
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/login_fragment"

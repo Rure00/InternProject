@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragment.SelectFragment"
+    android:paddingHorizontal="10.dp">
+
+    <TextView
+        android:id="@+id/top_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:layout_marginBottom="300dp"
+
+        android:text="@string/select_plz"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        />
+
+    <TextView
+        android:id="@+id/xml_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/top_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="40dp"
+
+        android:text="XML"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+
+        android:padding="10dp"
+        android:background="@drawable/rounded_blue_rectangle"
+
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/compose_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/xml_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="20dp"
+
+        android:text="COMPOSE"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+
+        android:padding="10dp"
+        android:background="@drawable/rounded_blue_rectangle"
+
+        android:gravity="center"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
