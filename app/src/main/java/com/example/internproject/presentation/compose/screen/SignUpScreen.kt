@@ -40,7 +40,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.internproject.R
 import com.example.internproject.domain.results.DuplicatedResult
 import com.example.internproject.domain.results.SignUpResult
+import com.example.internproject.domain.usecase.CheckIdDuplicateUseCase
+import com.example.internproject.domain.usecase.CheckNameDuplicateUseCase
+import com.example.internproject.domain.usecase.SignUpUseCase
 import com.example.internproject.presentation.compose.component.KoreanTextField
+import com.example.internproject.presentation.compose.screen.page.WriteBirthPage
 import com.example.internproject.presentation.compose.screen.page.WriteIdPage
 import com.example.internproject.presentation.compose.screen.page.WriteNamePage
 import com.example.internproject.presentation.compose.screen.page.WritePwdCheckPage
@@ -126,6 +130,22 @@ fun SignUpScreen(
                     signUpViewModel.initCheckDuplicateState()
                 }
             )
+        },
+        {
+            WriteBirthPage(
+                onBackButton = {
+                    pageIndex.value--
+                },
+                onNext = {
+                    birthState.value = it
+                    pageIndex.value += 1
+
+                    signUpViewModel.initCheckDuplicateState()
+                }
+            )
+        },
+        {
+
         }
 
     )

@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.internproject.R
+import com.example.internproject.presentation.compose.component.BirthPicker
 import com.example.internproject.presentation.ui_state.ResultUiState
 import com.example.internproject.presentation.utils.SignUpField
 import com.example.internproject.presentation.utils.ValidateSignUp
@@ -49,7 +50,7 @@ fun WriteBirthPage(
     signUpViewModel: SignUpViewModel = hiltViewModel<SignUpViewModel>()
 ) {
     val birthState = remember { mutableStateOf(LocalDate.now()) }
-    val activateNextButton = remember { mutableStateOf(false) }
+    val activateNextButton = remember { mutableStateOf(true) }
 
     val warningMsg = remember { mutableStateOf("") }
     val checkDuplicated = signUpViewModel.duplicatingUiState.collectAsState()
@@ -85,7 +86,33 @@ fun WriteBirthPage(
 
             Spacer(modifier = Modifier.height(40.dp).fillMaxWidth())
 
+            BirthPicker(
+                date = birthState.value,
+                modifier = Modifier.weight(1f),
+                itemModifier = Modifier,
+                visibleItemNum = 5,
+                dividerColor = LightGray
+            ) {
+                birthState.value = it
+            }
+        }
 
+        Box(
+            modifier = Modifier.height(55.dp).fillMaxWidth().background(
+                if(activateNextButton.value) TossBlue
+                else LightGray
+            ).clickable {
+                onNext(birthState.value)
+            },
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                modifier = Modifier,
+                text = "확인",
+                style = Typography.bodyMedium,
+                color = White,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
