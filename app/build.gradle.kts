@@ -23,12 +23,19 @@ android {
 
     defaultConfig {
         applicationId = "com.example.internproject"
-        minSdk = 30
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "dagger.hilt.android.testing.HiltTestRunner"
+
+        buildFeatures {
+            compose = true
+        }
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.5.1"
+        }
 
         kapt {
 //            javacOptions {
@@ -106,10 +113,14 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
 
     //compose
-    implementation("androidx.activity:activity-compose:1.10.0")
+    implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.compose.material:material:1.7.6")
     implementation("androidx.compose.animation:animation:1.7.6")
     implementation("androidx.compose.ui:ui-tooling:1.7.6")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("androidx.compose.foundation:foundation:1.7.6")
 
+    // reflect
+    implementation(kotlin("reflect"))
 
 }

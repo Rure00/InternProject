@@ -13,3 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val White = Color.White
 val Black = Color.Black
+
+val TossBlue = Color(0xFF0064FF)
+val TossGray = Color(0XFF202632)
+val ButtonGray = Color(0xFF0064FF)
