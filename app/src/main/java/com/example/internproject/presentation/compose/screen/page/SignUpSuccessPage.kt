@@ -94,7 +94,9 @@ fun SignUpSuccessPage(
         )
 
         Box(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 5.dp).background(color = TossBlue, shape = RoundedCornerShape(10.dp))
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 5.dp, vertical = 10.dp)
+                .background(color = TossBlue, shape = RoundedCornerShape(10.dp))
                 .clickable {
                     onBack()
                 },

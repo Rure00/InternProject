@@ -12,6 +12,7 @@ import com.example.internproject.domain.usecase.SignUpUseCase
 import com.example.internproject.presentation.ui_state.ResultUiState
 import com.example.internproject.presentation.ui_state.SignUpUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Delay
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,6 +59,9 @@ class SignUpViewModel @Inject constructor(
 
         viewModelScope.launch {
             val signUpDto = createSignUpDto()
+
+            delay(1000)
+
             when(signUpUseCase.invoke(signUpDto)) {
                 is SignUpResult.Success -> {
                     _signUpUiState.value = SignUpUiState.Success
