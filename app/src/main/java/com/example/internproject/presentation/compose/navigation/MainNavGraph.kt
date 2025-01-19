@@ -8,10 +8,11 @@ import com.example.internproject.presentation.compose.screen.HomeScreen
 import com.example.internproject.presentation.compose.screen.LoginScreen
 import com.example.internproject.presentation.compose.screen.SignUpScreen
 
-fun NavGraphBuilder.mainNavGraph(navController: NavController, onScreenChanged: (Destination) -> Unit) {
+const val MainNavRoute = "main"
+fun NavGraphBuilder.mainNavGraph(navController: NavController) {
     navigation(
-        route = "main/",
-        startDestination = Destination.Home.route
+        route = MainNavRoute,
+        startDestination = Destination.Login.route
     ) {
         composable(route = Destination.Home.route) {
             HomeScreen(
@@ -21,8 +22,8 @@ fun NavGraphBuilder.mainNavGraph(navController: NavController, onScreenChanged: 
 
         composable(route = Destination.Login.route) {
             LoginScreen(
-                onLogin = { },
-                onSignUp = { }
+                toHomeScreen = { navController.navigate(Destination.Home.route) },
+                toSignUpScreen = { navController.navigate(Destination.SignUp.route) }
             )
         }
 
@@ -31,13 +32,5 @@ fun NavGraphBuilder.mainNavGraph(navController: NavController, onScreenChanged: 
                 popBackStack = { navController.popBackStack() }
             )
         }
-//
-//        composable(route = Destination.Option.route) {
-//            OptionScreen(
-//                toAddMember = { navController.navigate(Destination.AddMember.route) },
-//                toSaveAttendance = {  }
-//            )
-//            onScreenChanged(Destination.Option)
-//        }
     }
 }

@@ -50,17 +50,22 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.internproject.R
 import com.example.internproject.presentation.compose.navigation.Destination
+import com.example.internproject.presentation.compose.navigation.MainNavRoute
+import com.example.internproject.presentation.compose.navigation.mainNavGraph
 import com.example.internproject.ui.theme.ButtonGray
 import com.example.internproject.ui.theme.InternProjectTheme
 import com.example.internproject.ui.theme.TossBlue
 import com.example.internproject.ui.theme.TossGray
 import com.example.internproject.ui.theme.Typography
 import com.example.internproject.ui.theme.White
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,7 +108,9 @@ private fun MainPage() {
         ) {
             NavHost(
                 navController,
-                startDestination = "main/") {
+                startDestination = MainNavRoute
+            ) {
+                mainNavGraph(navController)
             }
         }
     }
