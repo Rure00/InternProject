@@ -21,6 +21,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,6 +46,7 @@ import com.example.internproject.ui.theme.TossBlue
 import com.example.internproject.ui.theme.TossGray
 import com.example.internproject.ui.theme.Typography
 import com.example.internproject.ui.theme.White
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Composable
 fun LoginScreen(
@@ -52,7 +54,7 @@ fun LoginScreen(
     toSignUpScreen: () -> Unit,
     userViewModel: UserViewModel = hiltViewModel<UserViewModel>()
 ) {
-    val loginResultUiState = userViewModel.resultUiState.collectAsState()
+    val loginResultUiState by userViewModel.resultUiState.collectAsState()
 
     val idValue = remember {
         mutableStateOf("")
@@ -70,9 +72,10 @@ fun LoginScreen(
         toSignUpScreen()
     }
 
-    when(loginResultUiState.value) {
+    when(loginResultUiState) {
         is ResultUiState.Success -> {
             toHomeScreen()
+            userViewModel.initLoginResultUiState()
         }
         is ResultUiState.Loading -> {
             //TODO: 로딩바 보여주기
@@ -148,10 +151,11 @@ fun LoginScreen(
                     color = Color.Gray
                 )
             } else {
+                val pwdStr = pwdValue.value.map { "*" }.joinToString("")
                 Text(
-                    text = pwdValue.value,
+                    text = pwdStr,
                     style = Typography.bodySmall,
-                    color = Black
+                    color = Black,
                 )
             }
         }
@@ -194,7 +198,7 @@ fun LoginScreen(
         }
     }
 
-    if(loginResultUiState.value == ResultUiState.Loading) {
+    if(loginResultUiState == ResultUiState.Loading) {
         Box(modifier = Modifier.fillMaxSize().background(color = LightGray.copy(alpha = 0.5f))) {
             LoadingDialog()
         }
@@ -210,8 +214,6 @@ private fun LoadingDialog() {
             dismissOnClickOutside = false,
         )
     ) {
-        (LocalView.current.parent as DialogWindowProvider).window.setDimAmount(0f)
-        CircularProgressIndicator(
-        )
+        CircularProgressIndicator()
     }
 }

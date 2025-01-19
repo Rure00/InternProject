@@ -43,5 +43,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun initLoginResultUiState() {
+        _resultUiState.value = ResultUiState.Init
+    }
 
 }
