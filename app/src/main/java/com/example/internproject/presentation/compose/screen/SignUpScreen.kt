@@ -98,12 +98,35 @@ fun SignUpScreen(
                 }
             )
         },
-        { WritePwdPage(pwdState.value) {
-            pwdState.value = it
-        } },
-        { WritePwdCheckPage(pwdCheckState.value) {
-            pwdCheckState.value = it
-        } }
+        {
+            WritePwdPage(
+                value = pwdState.value,
+                onBackButton = {
+                    pageIndex.value--
+                },
+                onNext = {
+                    pwdState.value = it
+                    pageIndex.value += 1
+
+                    signUpViewModel.initCheckDuplicateState()
+                }
+            )
+        },
+        {
+            WritePwdCheckPage(
+                value = pwdCheckState.value,
+                pwd = pwdState.value,
+                onBackButton = {
+                    pageIndex.value--
+                },
+                onNext = {
+                    pwdCheckState.value = it
+                    pageIndex.value += 1
+
+                    signUpViewModel.initCheckDuplicateState()
+                }
+            )
+        }
 
     )
 
