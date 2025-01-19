@@ -1,5 +1,6 @@
 package com.example.internproject.presentation.compose.screen
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -104,16 +106,25 @@ fun LoginScreen(
             value = idValue.value,
             onValueChange = {
                 idValue.value = it
+                Log.d("BasicTextField", "value: ${it}")
             },
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().border(border = BorderStroke(1.dp, TossGray),
-                shape = RoundedCornerShape(10.dp)
-            ).padding(10.dp)
+            modifier = Modifier.fillMaxWidth().wrapContentHeight()
+                .border(border = BorderStroke(1.dp, TossGray), shape = RoundedCornerShape(10.dp))
+                .padding(10.dp),
+
+            singleLine = true
         ) {
             if(idValue.value.isEmpty()) {
                 Text(
                     text = "id를 입력해주세요.",
                     style = Typography.bodySmall,
                     color = Color.Gray
+                )
+            } else {
+                Text(
+                    text = idValue.value,
+                    style = Typography.bodySmall,
+                    color = Black
                 )
             }
         }
@@ -127,13 +138,20 @@ fun LoginScreen(
             },
             modifier = Modifier.fillMaxWidth().wrapContentHeight().border(border = BorderStroke(1.dp, TossGray),
                 shape = RoundedCornerShape(10.dp)
-            ).padding(10.dp)
+            ).padding(10.dp),
+            textStyle = Typography.bodySmall
         ) {
             if(pwdValue.value.isEmpty()) {
                 Text(
                     text = "비밀번호를 입력해주세요.",
                     style = Typography.bodySmall,
                     color = Color.Gray
+                )
+            } else {
+                Text(
+                    text = pwdValue.value,
+                    style = Typography.bodySmall,
+                    color = Black
                 )
             }
         }
