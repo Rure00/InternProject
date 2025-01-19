@@ -150,6 +150,7 @@ fun WriteIdPage(
                 if(activateNextButton.value) TossBlue
                 else LightGray
             ).clickable {
+                if(!activateNextButton.value) return@clickable
                 signUpViewModel.checkIdDuplicated(idState.value)
             },
             contentAlignment = Alignment.Center

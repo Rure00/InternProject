@@ -147,7 +147,10 @@ fun WritePwdCheckPage(
             modifier = Modifier.height(55.dp).fillMaxWidth().background(
                 if(activateNextButton.value) TossBlue
                 else LightGray
-            ).clickable { onNext(pwdCheckState.value) },
+            ).clickable {
+                if(!activateNextButton.value) return@clickable
+                onNext(pwdCheckState.value)
+            },
             contentAlignment = Alignment.Center
         ) {
             Text(

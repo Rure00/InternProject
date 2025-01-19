@@ -148,6 +148,7 @@ fun WriteNamePage(
                 if(activateNextButton.value) TossBlue
                 else LightGray
             ).clickable {
+                if(!activateNextButton.value) return@clickable
                 signUpViewModel.checkNameDuplicated(nameState.value)
             },
             contentAlignment = Alignment.Center

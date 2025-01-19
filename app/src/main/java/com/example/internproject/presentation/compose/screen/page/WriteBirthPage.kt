@@ -102,6 +102,7 @@ fun WriteBirthPage(
                 if(activateNextButton.value) TossBlue
                 else LightGray
             ).clickable {
+                if(!activateNextButton.value) return@clickable
                 onNext(birthState.value)
             },
             contentAlignment = Alignment.Center

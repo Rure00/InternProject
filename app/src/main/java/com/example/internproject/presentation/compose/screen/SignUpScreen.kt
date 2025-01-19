@@ -44,6 +44,7 @@ import com.example.internproject.domain.usecase.CheckIdDuplicateUseCase
 import com.example.internproject.domain.usecase.CheckNameDuplicateUseCase
 import com.example.internproject.domain.usecase.SignUpUseCase
 import com.example.internproject.presentation.compose.component.KoreanTextField
+import com.example.internproject.presentation.compose.screen.page.SignUpSuccessPage
 import com.example.internproject.presentation.compose.screen.page.WriteBirthPage
 import com.example.internproject.presentation.compose.screen.page.WriteIdPage
 import com.example.internproject.presentation.compose.screen.page.WriteNamePage
@@ -138,14 +139,20 @@ fun SignUpScreen(
                 },
                 onNext = {
                     birthState.value = it
-                    pageIndex.value += 1
 
-                    signUpViewModel.initCheckDuplicateState()
+                    with(signUpViewModel) {
+                        name = nameState.value
+                        id = idState.value
+                        pwd = pwdState.value
+                        birth = birthState.value.toString()
+
+                        signUpViewModel.trySignUp()
+                    }
                 }
             )
         },
         {
-
+            SignUpSuccessPage { popBackStack() }
         }
 
     )
@@ -153,9 +160,10 @@ fun SignUpScreen(
     val signUpResultUiState = signUpViewModel.signUpUiState.collectAsState()
     when(signUpResultUiState.value) {
         is SignUpUiState.Success -> {
-            popBackStack()
+            pageIndex.value = pages.lastIndex
         }
         is SignUpUiState.Failure -> {
+            popBackStack()
             Toast.makeText(LocalContext.current, "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show()
         }
         is SignUpUiState.Loading -> {
@@ -169,7 +177,7 @@ fun SignUpScreen(
     val checkDuplicatedUiState = signUpViewModel.duplicatingUiState.collectAsState()
 
     BackHandler {
-        if(pageIndex.value > 0) pageIndex.value--
+        if(pageIndex.value > 0 && pageIndex.value != pages.lastIndex) pageIndex.value--
         else popBackStack()
     }
 

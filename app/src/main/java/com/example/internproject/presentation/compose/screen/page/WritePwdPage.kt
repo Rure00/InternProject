@@ -154,7 +154,10 @@ fun WritePwdPage(
             modifier = Modifier.height(55.dp).fillMaxWidth().background(
                 if(activateNextButton.value) TossBlue
                 else LightGray
-            ).clickable { onNext(pwdState.value) },
+            ).clickable {
+                if(!activateNextButton.value) return@clickable
+                onNext(pwdState.value)
+            },
             contentAlignment = Alignment.Center
         ) {
             Text(
